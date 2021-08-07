@@ -32,5 +32,36 @@ router.route('/:id').get((req, res) => {
 }
 );
 
+router.route("/add").post(function (req, res) {
+    let db_connect = dbo.getDb("employees");
+    let myobj = {
+      person_name: req.body.person_name,
+      person_position: req.body.person_position,
+      person_level: req.body.person_level,
+    };
+    db_connect.collection("records").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+    });
+  });
+  
+  // This section will help you update a record by id.
+//   router.route("/update/:id").post(function (req, res) {
+//     let db_connect = dbo.getDb("employees");
+//     let myquery = { id: req.body.id };
+//     let newvalues = {
+//       $set: {
+//         person_name: req.body.person_name,
+//         person_position: req.body.person_position,
+//         person_level: req.body.person_level,
+//       },
+//     };
+//     db_connect
+//       .collection("records")
+//       .updateOne(myquery, newvalues, function (err, res) {
+//         if (err) throw err;
+//         console.log("1 document updated");
+//       });
+//   });
+
 
 module.exports = router;

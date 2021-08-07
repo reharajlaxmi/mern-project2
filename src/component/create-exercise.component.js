@@ -1,16 +1,10 @@
 import React,{ Component } from 'react';
-// import {Link } from 'react-router-dom';
 import axios from 'axios';
+
 
 export default class CreateExercise extends Component{
     constructor(props) {
         super(props);
-
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeMobile = this.onChangeMobile.bind(this);
-        this.onChangeDob = this.onChangeDob.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
           name: "",
@@ -18,6 +12,14 @@ export default class CreateExercise extends Component{
           mobile: "",
           dob: "",
         };
+
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeMobile = this.onChangeMobile.bind(this);
+        this.onChangeDob = this.onChangeDob.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+        
       }
       onChangeName(e) {
         this.setState({
@@ -51,22 +53,26 @@ export default class CreateExercise extends Component{
           mobile: this.state.mobile,
           dob: this.state.dob,
         };
-        axios
-      .post("http://localhost:3000/", newperson)
+      axios
+      .post("/exercises/add", newperson)
       .then((res) => console.log(res.data));
 
 
     this.setState({
-      person_name: "",
-      person_position: "",
-      person_level: "",
+      name: "",
+      email: "",
+      mobile: "",
+      dob: "",
     });
+
+  
   }
+ 
     
       render() {
         return (
             
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} method="POST">
                 <h3>Enter Your Record</h3>
               <div className = "form-group">
                   <label>Enter Your Name : </label>
@@ -109,6 +115,7 @@ export default class CreateExercise extends Component{
               type="submit"
               value="Submit"
               className="btn btn-primary"
+              
             />
           </div>
            

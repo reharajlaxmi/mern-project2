@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-// const Record = (props) => (
-//   <tr>
-//     <td>{props.record.name}</td>
-//     <td>{props.record.email}</td>
-//     <td>{props.record.mobile}</td>
-//     <td>{props.record.dob}</td>
-//   </tr>
-// );
-
 export default class ExerciseList extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +9,10 @@ export default class ExerciseList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3000/record")
+      .get("/exercises")
       .then((response) => {
         this.setState({ records: response.data });
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -29,8 +21,8 @@ export default class ExerciseList extends Component {
 
   render() {
     return (
+      
       <div>
-        
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
@@ -40,9 +32,22 @@ export default class ExerciseList extends Component {
               <th>D.O.B</th>
             </tr>
           </thead>
-          <tbody>{this.setState}</tbody>
+          <tbody>
+           { this.state.records.map((element,i) => {
+             return (
+                  <tr>
+                    <th>{element.name}</th>
+                    <th>{element.email}</th>
+                    <th>{element.mobile}</th>
+                    <th>{element.dob}</th>
+                  </tr>
+             );
+            })
+            }  
+          </tbody>
         </table>
       </div>
+  
     );
   }
 }
