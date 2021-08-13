@@ -54,6 +54,9 @@ export default class CreateExercise extends Component{
       .post("/exercises/add", newperson)
       .then(() => {
         window.location.reload(false);
+      })
+      .catch(()=>{
+          window.alert("Email already exist, enter other email");window.location="/";
       });
       
     this.setState({

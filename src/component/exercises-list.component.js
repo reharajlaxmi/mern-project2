@@ -22,6 +22,7 @@ export default class ExerciseList extends Component {
     return (
       
       <div>
+       
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>

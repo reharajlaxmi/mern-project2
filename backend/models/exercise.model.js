@@ -8,5 +8,10 @@ const exerciseSchema = new Schema({
     dob: { type: Date, required: true },
 });
 
+exerciseSchema.path('email').validate(async (email)=>{
+   const emailCount = await mongoose.models.Exercise.countDocuments({email})
+   return !emailCount
+},'Email already exist')
+
 const Exercise = mongoose.model('Exercise',exerciseSchema);
 module.exports = Exercise;
