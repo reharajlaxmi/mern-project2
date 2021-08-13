@@ -6,7 +6,6 @@ export default class ExerciseList extends Component {
     super(props);
     this.state = { records: [] };
   }
-
   componentDidMount() {
     axios
       .get("/exercises")

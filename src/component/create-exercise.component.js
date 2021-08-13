@@ -8,18 +8,15 @@ export default class CreateExercise extends Component{
 
         this.state = {
           name: "",
-          email: "",
+          email :"",
           mobile: "",
           dob: "",
         };
-
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeMobile = this.onChangeMobile.bind(this);
         this.onChangeDob = this.onChangeDob.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
-        
       }
       onChangeName(e) {
         this.setState({
@@ -29,7 +26,7 @@ export default class CreateExercise extends Component{
     
       onChangeEmail(e) {
         this.setState({
-          email: e.target.value,
+          email : e.target.value,
         });
       }
       onChangeMobile(e) {
@@ -55,21 +52,18 @@ export default class CreateExercise extends Component{
         };
       axios
       .post("/exercises/add", newperson)
-      .then((res) => console.log(res.data));
-
-
+      .then(() => {
+        window.location.reload(false);
+      });
+      
     this.setState({
       name: "",
-      email: "",
+      email:"",
       mobile: "",
       dob: "",
-    });
-
-  
-  }
- 
-    
-      render() {
+    }); 
+  }  
+     render() {
         return (
             
             <form onSubmit={this.onSubmit} method="POST">
